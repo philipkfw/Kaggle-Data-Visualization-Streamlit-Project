@@ -14,6 +14,7 @@ import streamlit as st
 
 from dashboard.config import data_source_label
 from dashboard.data import repository
+from dashboard.ui.layout import source_link
 from dashboard.domain.filters import DashboardFilters, SegmentFilters
 from dashboard.domain.metrics import DIMENSIONS
 from dashboard.utils.date_utils import GRANULARITIES, Period, format_date, presets
@@ -95,7 +96,8 @@ def render_sidebar() -> DashboardFilters:
             f'{format_date(coverage.financial.start)} – {format_date(coverage.financial.end)}<br>'
             f'Account lifecycle: {format_date(coverage.window.start)} – '
             f'{format_date(coverage.window.end)}<br>Mountain Time · USD<br>'
-            f'{html.escape(data_source_label())}</div>'
+            f'{html.escape(data_source_label())}<br>'
+            f'Mock data: {source_link("Kaggle dataset ↗")}</div>'
         )
         st.button("Refresh data", on_click=_refresh, icon=":material/refresh:", width="stretch",
                   type="tertiary")

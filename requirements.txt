@@ -1,8 +1,6 @@
+# Runtime for the dashboard (snapshot backend) - what Streamlit Community Cloud installs.
 streamlit==1.65.0
 plotly==7.1.0
 pandas==2.3.3
 duckdb==1.5.6
 pyarrow==25.0.1
-# Only needed for the live Snowflake backend and for re-exporting the snapshot:
-snowflake-connector-python[pandas]==4.8.0
-cryptography==50.0.2

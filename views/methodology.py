@@ -3,7 +3,7 @@
 import pandas as pd
 import streamlit as st
 
-from dashboard.config import data_source_label
+from dashboard.config import DATA_SOURCE_URL, data_source_label
 from dashboard.domain import metrics as m
 from dashboard.ui import layout
 from dashboard.ui.filters import current_coverage
@@ -17,6 +17,23 @@ st.html("""
   <div class="page-title">Definitions & Data Notes</div>
 </div>""")
 
+with layout.card("About this data", "Mock data for a portfolio project", key="about"):
+    st.markdown(f"""
+This dashboard uses **mock (synthetic) data** from a public Kaggle dataset describing a
+field-service SaaS business: [view the dataset on Kaggle ↗]({DATA_SOURCE_URL}).
+The figures are illustrative and do not represent any real company's performance.
+
+- **Raw data:** six CSV extracts. 200 accounts with sign-up platform and geography,
+  427 lifecycle events (trial, subscribed, churned), 609 invoices with 1,848 line items,
+  and 435 payments.
+- **Pipeline:** the CSVs were loaded into Snowflake and modelled with dbt from Bronze to
+  Silver to Gold. That includes timezone conversion to Mountain Time, conversion to USD at
+  Federal Reserve H.10 rates, and daily lifecycle snapshots, with 176 data tests.
+- **This app** reads only the Gold reporting tables. It runs from a verified snapshot of
+  them, so it works without a live warehouse connection.
+""")
+
+st.space("small")
 with layout.card("Metric definitions",
                  "All definitions come from the dbt project; the dashboard does not redefine them",
                  key="defs"):

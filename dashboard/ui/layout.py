@@ -8,11 +8,28 @@ from contextlib import contextmanager
 
 import streamlit as st
 
-from dashboard.config import (CURRENCY, REPORTING_TIMEZONE, REPORTING_TIMEZONE_LABEL,
-                              data_source_label)
+from dashboard.config import (CURRENCY, DATA_SOURCE_NAME, DATA_SOURCE_URL, REPORTING_TIMEZONE,
+                              REPORTING_TIMEZONE_LABEL, data_source_label)
 from dashboard.domain.filters import DashboardFilters
 from dashboard.domain.metrics import DIMENSIONS
 from dashboard.utils.date_utils import format_date
+
+
+def source_link(text: str, css_class: str = "") -> str:
+    """External link to the Kaggle dataset, opening in a new tab."""
+    cls = f' class="{css_class}"' if css_class else ""
+    return (f'<a{cls} href="{DATA_SOURCE_URL}" target="_blank" rel="noopener noreferrer">'
+            f"{html.escape(text)}</a>")
+
+
+def mock_data_banner() -> None:
+    """Prominent 'about this data' notice (used on the landing page)."""
+    st.html(
+        '<div class="note demo"><b>Portfolio demo with mock data.</b> Every figure comes from a '
+        f"synthetic field-service SaaS dataset published on {source_link('Kaggle ↗')}, modelled "
+        "with dbt on Snowflake. The numbers are illustrative and do not represent any real "
+        "company's performance.</div>"
+    )
 
 
 def page_header(eyebrow: str, title: str, filters: DashboardFilters) -> None:
@@ -33,6 +50,7 @@ def page_header(eyebrow: str, title: str, filters: DashboardFilters) -> None:
     <span class="chip">{compare_text}</span>
     <span class="chip">{html.escape(segment_text)}</span>
     <span class="chip">{REPORTING_TIMEZONE_LABEL} · {CURRENCY}</span>
+    {source_link(f"Mock data · {DATA_SOURCE_NAME} ↗", "chip chip-link")}
   </div>
 </div>""")
 
@@ -85,5 +103,7 @@ def footer(data_end) -> None:
     st.html(
         f'<div class="footer">All dates are {REPORTING_TIMEZONE_LABEL} ({REPORTING_TIMEZONE}); '
         f'all amounts in {CURRENCY}. Data through {format_date(data_end)}. '
-        f"Source: {html.escape(data_source_label())}.</div>"
+        f"Source: {html.escape(data_source_label())}. "
+        f"Mock data from a public {source_link(f'{DATA_SOURCE_NAME} dataset ↗')}; figures are "
+        "illustrative.</div>"
     )
