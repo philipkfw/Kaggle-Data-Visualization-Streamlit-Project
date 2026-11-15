@@ -8,7 +8,8 @@ from contextlib import contextmanager
 
 import streamlit as st
 
-from dashboard.config import (CURRENCY, DATA_SOURCE_NAME, DATA_SOURCE_URL, REPORTING_TIMEZONE,
+from dashboard.config import (CURRENCY, DASHBOARD_OWNER, DATA_SOURCE_NAME, DATA_SOURCE_URL,
+                              REPORTING_TIMEZONE,
                               REPORTING_TIMEZONE_LABEL, data_source_label)
 from dashboard.domain.filters import DashboardFilters
 from dashboard.domain.metrics import DIMENSIONS
@@ -22,10 +23,17 @@ def source_link(text: str, css_class: str = "") -> str:
             f"{html.escape(text)}</a>")
 
 
+def owner_byline() -> str:
+    """'Dashboard owner' line shown under every page title."""
+    return (f'<div class="page-byline">Dashboard owner: '
+            f"<b>{html.escape(DASHBOARD_OWNER)}</b></div>")
+
+
 def mock_data_banner() -> None:
     """Prominent 'about this data' notice (used on the landing page)."""
     st.html(
-        '<div class="note demo"><b>Portfolio demo with mock data.</b> Every figure comes from a '
+        f'<div class="note demo"><b>Portfolio dashboard by {html.escape(DASHBOARD_OWNER)}, built on '
+        "mock data.</b> Every figure comes from a "
         f"synthetic field-service SaaS dataset published on {source_link('Kaggle ↗')}, modelled "
         "with dbt on Snowflake. The numbers are illustrative and do not represent any real "
         "company's performance.</div>"
@@ -45,6 +53,7 @@ def page_header(eyebrow: str, title: str, filters: DashboardFilters) -> None:
 <div class="page-header">
   <div class="page-eyebrow">{html.escape(eyebrow)}</div>
   <div class="page-title">{html.escape(title)}</div>
+  {owner_byline()}
   <div class="page-meta">
     <span class="chip"><b>{html.escape(filters.period.label())}</b></span>
     <span class="chip">{compare_text}</span>
@@ -101,7 +110,7 @@ def financial_coverage_note(filters: DashboardFilters, financial: "Period") -> N
 
 def footer(data_end) -> None:
     st.html(
-        f'<div class="footer">All dates are {REPORTING_TIMEZONE_LABEL} ({REPORTING_TIMEZONE}); '
+        f'<div class="footer">Dashboard owner: {html.escape(DASHBOARD_OWNER)}. All dates are {REPORTING_TIMEZONE_LABEL} ({REPORTING_TIMEZONE}); '
         f'all amounts in {CURRENCY}. Data through {format_date(data_end)}. '
         f"Source: {html.escape(data_source_label())}. "
         f"Mock data from a public {source_link(f'{DATA_SOURCE_NAME} dataset ↗')}; figures are "

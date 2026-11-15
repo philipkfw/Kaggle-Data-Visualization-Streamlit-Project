@@ -6,11 +6,11 @@ page via st.navigation.
 
 import streamlit as st
 
-from dashboard.config import APP_TITLE, data_backend
+from dashboard.config import PAGE_TITLE, data_backend
 from dashboard.ui import theme
 from dashboard.ui.filters import render_sidebar
 
-st.set_page_config(page_title=APP_TITLE, page_icon=":material/insights:", layout="wide",
+st.set_page_config(page_title=PAGE_TITLE, page_icon=":material/insights:", layout="wide",
                    initial_sidebar_state="auto")
 theme.apply()
 

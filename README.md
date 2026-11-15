@@ -1,5 +1,7 @@
 # Field Service Analytics Dashboard
 
+**Dashboard owner:** Philip Wong
+
 An interactive Streamlit + Plotly dashboard for **Gross Payment Volume (GPV)**, **Invoice Volume** and **Accounts by lifecycle stage**. It reads the Gold reporting marts built in Snowflake by the companion dbt project, [Kaggle-Data-Modelling-Project](../Kaggle-Data-Modelling-Project).
 
 The dbt project is the source of truth for every metric definition, the timezone conversion and the USD conversion. This app adds no business logic of its own: it filters the Gold marts, aggregates them in SQL, and presents the results.

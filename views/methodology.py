@@ -3,7 +3,7 @@
 import pandas as pd
 import streamlit as st
 
-from dashboard.config import DATA_SOURCE_URL, data_source_label
+from dashboard.config import DASHBOARD_OWNER, DATA_SOURCE_URL, data_source_label
 from dashboard.domain import metrics as m
 from dashboard.ui import layout
 from dashboard.ui.filters import current_coverage
@@ -11,14 +11,17 @@ from dashboard.utils.date_utils import format_date
 
 coverage = current_coverage()
 
-st.html("""
+st.html(f"""
 <div class="page-header">
   <div class="page-eyebrow">Reference</div>
   <div class="page-title">Definitions & Data Notes</div>
+  {layout.owner_byline()}
 </div>""")
 
 with layout.card("About this data", "Mock data for a portfolio project", key="about"):
     st.markdown(f"""
+Dashboard owner: **{DASHBOARD_OWNER}**. Designed and built as a portfolio project.
+
 This dashboard uses **mock (synthetic) data** from a public Kaggle dataset describing a
 field-service SaaS business: [view the dataset on Kaggle ↗]({DATA_SOURCE_URL}).
 The figures are illustrative and do not represent any real company's performance.

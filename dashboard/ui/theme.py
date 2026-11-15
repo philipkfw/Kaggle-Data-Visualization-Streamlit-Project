@@ -70,6 +70,13 @@ _CSS = f"""
   text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }}
 .page-title {{ font-size: 26px; font-weight: 650; color: var(--text); line-height: 1.2;
   letter-spacing: -0.01em; }}
+.page-byline {{ font-size: 13px; color: var(--muted); margin-top: 4px; }}
+.page-byline b {{ color: var(--text-2); font-weight: 600; }}
+.sidebar-owner {{ display: flex; flex-direction: column; gap: 2px; padding: 10px 12px;
+  border: 1px solid var(--border); border-radius: 8px; background: var(--bg); margin-top: 4px; }}
+.sidebar-owner span {{ font-size: 11px; font-weight: 600; letter-spacing: .05em;
+  text-transform: uppercase; color: var(--muted); }}
+.sidebar-owner b {{ font-size: 14px; font-weight: 600; color: var(--text); }}
 .page-meta {{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }}
 .chip {{ display: inline-flex; align-items: center; gap: 6px; font-size: 12px;
   color: var(--text-2); background: var(--surface); border: 1px solid var(--border);

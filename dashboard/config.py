@@ -15,6 +15,8 @@ from pathlib import Path
 import streamlit as st
 
 APP_TITLE = "Field Service Analytics"
+DASHBOARD_OWNER = "Philip Wong"
+PAGE_TITLE = f"{APP_TITLE} · {DASHBOARD_OWNER}"  # Browser tab and shared-link previews.
 REPORTING_TIMEZONE = "America/Denver"  # Matches dbt var `reporting_timezone`.
 REPORTING_TIMEZONE_LABEL = "Mountain Time"
 CURRENCY = "USD"
