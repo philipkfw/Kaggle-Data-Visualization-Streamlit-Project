@@ -12,7 +12,7 @@ from datetime import date
 import pandas as pd
 import streamlit as st
 
-from dashboard.config import data_source_label
+from dashboard.config import DASHBOARD_OWNER, data_source_label
 from dashboard.data import repository
 from dashboard.ui.layout import source_link
 from dashboard.domain.filters import DashboardFilters, SegmentFilters
@@ -69,6 +69,8 @@ def render_sidebar() -> DashboardFilters:
     coverage = repository.data_coverage()
     options = repository.segment_options()
     with st.sidebar:
+        st.html(f'<div class="sidebar-owner"><span>Dashboard owner</span>'
+                f'<b>{html.escape(DASHBOARD_OWNER)}</b></div>')
         st.html('<div class="sidebar-label">Reporting period</div>')
         period = _period_controls(coverage.window).clamp(coverage.window)
         filters_preview = DashboardFilters(period, coverage.window)
