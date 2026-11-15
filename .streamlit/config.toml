@@ -1,0 +1,36 @@
+[server]
+runOnSave = false
+
+[browser]
+gatherUsageStats = false
+
+[client]
+toolbarMode = "minimal"
+
+# Base theme. Colour tokens mirror dashboard/ui/theme.py - change both together.
+[theme]
+base = "light"
+primaryColor = "#2A78D6"
+backgroundColor = "#F7F8FA"
+secondaryBackgroundColor = "#F1F3F6"
+textColor = "#101828"
+linkColor = "#2A78D6"
+borderColor = "#E4E7EC"
+showWidgetBorder = true
+baseRadius = "8px"
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+baseFontSize = 14
+headingFontWeights = [650, 600, 600, 600, 600, 600]
+dataframeBorderColor = "#E4E7EC"
+dataframeHeaderBackgroundColor = "#F7F8FA"
+blueColor = "#2A78D6"
+greenColor = "#008300"
+redColor = "#D03B3B"
+violetColor = "#6250D6"
+grayColor = "#98A2B3"
+chartCategoricalColors = ["#2A78D6", "#0F9488", "#6250D6", "#008300", "#EDA100", "#D9506A"]
+
+[theme.sidebar]
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F7F8FA"
+borderColor = "#E4E7EC"

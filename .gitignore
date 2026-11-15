@@ -1,0 +1,17 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Secrets - never commit credentials or keys
+.streamlit/secrets.toml
+.env
+*.p8
+*.pem
+*.key
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
