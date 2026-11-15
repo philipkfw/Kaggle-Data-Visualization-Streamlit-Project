@@ -22,6 +22,20 @@ Every page shares the same sidebar filters: reporting period (presets or a custo
 
 ---
 
+## Why Streamlit, and how I built it
+
+I've built plenty of reports in drag-and-drop BI tools, and I was curious what else is possible. What if a dashboard were built like the rest of a modern data stack: in code, version-controlled, tested, and deployable for free? Streamlit made that practical. It's Python, so it sits naturally next to SQL and dbt, and it gave me full control over the design and logic.
+
+I built this with **Claude Code**, and treated it the way I'd work with an engineer on my team:
+
+- **I set the direction.** I wrote a detailed brief: business requirements, metric definitions from my dbt project, Mountain Time and USD standards, and design rules. I asked for a discovery and architecture proposal before any code was written.
+- **I made the calls.** I reviewed that proposal and decided the open questions, such as how to define "active" accounts and which default reporting period to use. Then the build went step by step.
+- **I verified the output.** Vibe-coded, but checked. Every dashboard total reconciles with independent queries on the Gold tables, and those Gold roll-ups trace back to the raw Bronze data through dbt tests.
+
+My takeaway: AI tools make building dramatically faster, but the value still comes from asking the right questions, giving the right context, and checking that the numbers are right. That's the kind of AI-assisted workflow I'm excited to keep exploring.
+
+---
+
 ## Data sources and metric mapping
 
 The app reads only the `KAGGLE_DB.GOLD` tables, either from the bundled snapshot or live from Snowflake.
