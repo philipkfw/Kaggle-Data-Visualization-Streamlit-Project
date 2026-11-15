@@ -1,0 +1,104 @@
+{
+  "description": "Parquet snapshot of the dbt Gold tables for the DuckDB backend.",
+  "database": "KAGGLE_DB",
+  "gold_schema": "GOLD",
+  "exported_at_mt": "2026-11-14T20:51:51-07:00",
+  "tables": [
+    {
+      "schema": "GOLD",
+      "name": "MART_FINANCIAL_PERFORMANCE",
+      "file": "gold__mart_financial_performance.parquet",
+      "rows": 1010,
+      "columns": 12,
+      "checksums_verified": 21
+    },
+    {
+      "schema": "GOLD",
+      "name": "MART_ACCOUNT_LIFECYCLE",
+      "file": "gold__mart_account_lifecycle.parquet",
+      "rows": 49354,
+      "columns": 15,
+      "checksums_verified": 30
+    },
+    {
+      "schema": "GOLD",
+      "name": "MART_ACCOUNT_PERFORMANCE",
+      "file": "gold__mart_account_performance.parquet",
+      "rows": 1749,
+      "columns": 23,
+      "checksums_verified": 50
+    },
+    {
+      "schema": "GOLD",
+      "name": "DIM_ACCOUNTS",
+      "file": "gold__dim_accounts.parquet",
+      "rows": 200,
+      "columns": 24,
+      "checksums_verified": 31
+    },
+    {
+      "schema": "GOLD",
+      "name": "DIM_DATE",
+      "file": "gold__dim_date.parquet",
+      "rows": 590,
+      "columns": 14,
+      "checksums_verified": 22
+    },
+    {
+      "schema": "GOLD",
+      "name": "DIM_FX_RATES",
+      "file": "gold__dim_fx_rates.parquet",
+      "rows": 2360,
+      "columns": 11,
+      "checksums_verified": 13
+    },
+    {
+      "schema": "GOLD",
+      "name": "FCT_PAYMENT_TRANSACTIONS",
+      "file": "gold__fct_payment_transactions.parquet",
+      "rows": 435,
+      "columns": 15,
+      "checksums_verified": 16
+    },
+    {
+      "schema": "GOLD",
+      "name": "FCT_INVOICES",
+      "file": "gold__fct_invoices.parquet",
+      "rows": 609,
+      "columns": 20,
+      "checksums_verified": 32
+    },
+    {
+      "schema": "GOLD",
+      "name": "FCT_ACCOUNT_LIFECYCLE",
+      "file": "gold__fct_account_lifecycle.parquet",
+      "rows": 427,
+      "columns": 13,
+      "checksums_verified": 15
+    },
+    {
+      "schema": "GOLD",
+      "name": "FCT_ACCOUNT_DAILY_STATUS",
+      "file": "gold__fct_account_daily_status.parquet",
+      "rows": 79202,
+      "columns": 9,
+      "checksums_verified": 15
+    },
+    {
+      "schema": "BRONZE",
+      "name": "PAYMENT_TRANSACTIONS",
+      "file": "bronze__payment_transactions.parquet",
+      "rows": 435,
+      "columns": 2,
+      "checksums_verified": 3
+    },
+    {
+      "schema": "BRONZE",
+      "name": "INVOICES",
+      "file": "bronze__invoices.parquet",
+      "rows": 609,
+      "columns": 2,
+      "checksums_verified": 3
+    }
+  ]
+}
