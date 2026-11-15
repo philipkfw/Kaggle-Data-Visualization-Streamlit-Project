@@ -15,6 +15,7 @@ coverage = current_coverage()
 comparison = filters.comparison
 
 layout.page_header("Overview", "Executive Overview", filters)
+layout.mock_data_banner()
 
 financial = repository.financial_totals(filters)
 accounts = repository.lifecycle_totals(filters)

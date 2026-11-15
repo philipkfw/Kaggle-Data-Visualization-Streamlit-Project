@@ -19,6 +19,11 @@ REPORTING_TIMEZONE = "America/Denver"  # Matches dbt var `reporting_timezone`.
 REPORTING_TIMEZONE_LABEL = "Mountain Time"
 CURRENCY = "USD"
 
+# Attribution: the data is synthetic (mock) field-service SaaS data from Kaggle.
+DATA_SOURCE_NAME = "Kaggle"
+DATA_SOURCE_URL = ("https://www.kaggle.com/datasets/"
+                   "c17764cc9f9b0eda9473a8c7e12f2193ac997cd320dc6cca0e39000400581042/data")
+
 # Ranked bar charts show at most this many categories; the full list is in tables.
 TOP_N_CATEGORIES = 12
 

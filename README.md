@@ -4,6 +4,8 @@ An interactive Streamlit + Plotly dashboard for **Gross Payment Volume (GPV)**, 
 
 The dbt project is the source of truth for every metric definition, the timezone conversion and the USD conversion. This app adds no business logic of its own: it filters the Gold marts, aggregates them in SQL, and presents the results.
 
+> **Mock data.** All figures come from a synthetic field-service SaaS dataset published on Kaggle: [view the dataset on Kaggle](https://www.kaggle.com/datasets/c17764cc9f9b0eda9473a8c7e12f2193ac997cd320dc6cca0e39000400581042/data). They are illustrative and do not represent any real company's performance. The app says so on every page.
+
 **The dashboard runs with no Snowflake account.** A verified Parquet snapshot of the Gold tables ships in [`data/snapshot/`](data/snapshot/), and the app queries it with DuckDB by default. Live Snowflake is optional (see [Data backends](#data-backends)).
 
 | Page | What it answers |
@@ -60,7 +62,8 @@ Requires Python 3.10+.
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements-dev.txt    # app + pytest (requirements.txt = app only)
+pip install -r requirements.txt          # the dashboard (snapshot backend) - all you need to run it
+pip install -r requirements-dev.txt      # + Snowflake connector + pytest (live mode, re-export, tests)
 ```
 
 ### 2. Run
@@ -142,10 +145,20 @@ All 162 checks pass on both backends.
 ---
 
 ## Deploying to Streamlit Community Cloud
-1. Push this repository to GitHub, including `data/snapshot/`. `secrets.toml` is excluded by `.gitignore`.
-2. At [share.streamlit.io](https://share.streamlit.io), create an app from the repo, with main file `app.py`.
-3. Deploy. **No secrets are needed**; the app uses the bundled snapshot. `requirements.txt` pins every dependency.
-   - Only to query live Snowflake: under **Advanced settings → Secrets**, paste `[app] data_backend = "snowflake"` and the `[snowflake]` block, using `private_key` with the key contents.
+The app needs **no secrets**: it runs from the bundled snapshot, and Community Cloud installs only `requirements.txt` (the slim runtime, with no Snowflake connector).
+
+1. Sign in at [share.streamlit.io](https://share.streamlit.io) with GitHub. For a **private** repo, authorise Streamlit's private-repo access when prompted.
+2. Click **Create app → Deploy a public app from GitHub** and choose:
+   - Repository: this repo · Branch: `main` · Main file path: `app.py`
+   - App URL: choose a custom subdomain, e.g. `field-service-analytics`
+   - Advanced settings → Python version **3.12**. No secrets are needed.
+3. Click **Deploy**. The first build takes a few minutes; later pushes to `main` redeploy automatically.
+4. **Make the app public** if the repo is private: apps from private repos start private. Go to app **Settings → Sharing → Who can view this app** and choose *This app is public and searchable*. The repo itself stays private.
+5. Open the link in a private/incognito window to confirm it loads without signing in.
+
+Community Cloud puts apps to sleep after a period without traffic. A sleeping app shows a "wake up" button and starts in about 30 seconds, so open the link yourself shortly before sharing it.
+
+Only for live Snowflake on Cloud: add `snowflake-connector-python` and `cryptography` to `requirements.txt`, then under **Settings → Secrets** paste `[app] data_backend = "snowflake"` and the `[snowflake]` block, using `private_key` with the key contents.
 
 ---
 

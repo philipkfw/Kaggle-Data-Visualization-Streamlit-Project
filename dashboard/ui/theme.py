@@ -75,6 +75,11 @@ _CSS = f"""
   color: var(--text-2); background: var(--surface); border: 1px solid var(--border);
   border-radius: 999px; padding: 3px 10px; white-space: nowrap; }}
 .chip b {{ color: var(--text); font-weight: 600; }}
+a.chip-link {{ color: var(--accent); text-decoration: none; border-color: rgba(42,120,214,.35);
+  background: rgba(42,120,214,.06); }}
+a.chip-link:hover {{ background: rgba(42,120,214,.12); }}
+.note a, .footer a, .sidebar-caption a {{ color: var(--accent); text-decoration: none; }}
+.note a:hover, .footer a:hover, .sidebar-caption a:hover {{ text-decoration: underline; }}
 
 /* Cards: any container keyed "card_*" */
 [class*="st-key-card_"] {{ background: var(--surface); border: 1px solid var(--border);
@@ -103,6 +108,7 @@ _CSS = f"""
 .note {{ font-size: 12.5px; color: var(--text-2); background: var(--surface);
   border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 8px;
   padding: 10px 14px; margin: 4px 0 12px; }}
+.note.demo {{ border-left-color: var(--text-2); background: #F2F4F7; color: var(--text); }}
 .footer {{ font-size: 12px; color: var(--muted); border-top: 1px solid var(--border);
   margin-top: 2rem; padding-top: 12px; }}
 .sidebar-label {{ font-size: 11px; font-weight: 600; letter-spacing: .05em;
